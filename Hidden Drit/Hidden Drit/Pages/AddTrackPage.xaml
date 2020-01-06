@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Hidden_Drit.Pages.AddTrackPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+            <Label Text="Add New Location" VerticalOptions="Start" HorizontalOptions="Center" />
+            <Entry x:Name="txtTrackName" x:DataType="x:String" Placeholder="Enter Name"/>
+            <Editor x:Name="txtDescription" Placeholder="Enter Description" AutoSize="TextChanges"/>
+            <Label/>
+            <Label Text="Select Type:"/>
+            <Picker x:Name="TrackTypePicker"/>
+            <Label/>
+            <Label Text="Difficulty level:" />
+            <Picker x:Name="LevelPicker"/>
+            <Label/>
+            <Label Text="Select a Cover Photo"/>
+            <Image x:Name="imgCoverImage"/>
+            <Button x:Name="btnSelectImage" Text="Select Photo" Clicked="btnSelectImage_Clicked"/>
+            
+            
+            <Label/>
+            <Label Text="Upload GEO Date can be in the follwing format (KML)"/>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button x:Name="btnUploadGeoData" Text="Upload GeoData" Grid.Row="0" Grid.Column="0"/>
+                <Button x:Name="btnGeoLocation" Text="GPS Location" Grid.Row="0" Grid.Column="1"/>
+            </Grid>
+
+
+            <Label/>
+            <Button x:Name="btnSave" Text="Save Track" Clicked="btnSave_Clicked"/>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
