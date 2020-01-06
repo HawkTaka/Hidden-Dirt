@@ -101,9 +101,9 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hidden Drit\Hidden Drit.csproj">
-      <Project>{0B138260-5DE8-4A74-ACC7-B022D3E1739D}</Project>
-      <Name>Hidden Drit</Name>
+    <ProjectReference Include="..\Hidden Drit\Hidden Dirt.csproj">
+      <Project>{80B292B1-AA49-4BF6-8E00-7EAAFC4C3D5E}</Project>
+      <Name>Hidden Dirt</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

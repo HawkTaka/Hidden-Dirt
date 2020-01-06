@@ -30,7 +30,7 @@
                     <Label x:Name="lblLevel" Text="XXXXX" Grid.Column="1" Grid.Row="1"/>
 
                     <Label Text="User Rating" Grid.Column="0" Grid.Row="2"/>
-                    <Label x:Name="lblLevel" Text="XXXXX" Grid.Column="1" Grid.Row="2"/>
+                    <Label x:Name="lblUserRating" Text="XXXXX" Grid.Column="1" Grid.Row="2"/>
 
                 </Grid>
 
