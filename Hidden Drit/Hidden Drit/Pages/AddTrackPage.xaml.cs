@@ -36,6 +36,7 @@ namespace Hidden_Drit.Pages
 
                 var TrackLevels = conn.Table<TrackLevel>().Select(s => s.Name).ToList();
                 LevelPicker.ItemsSource = TrackLevels;
+                LevelPicker.SelectedIndex = 0;
             }
 
         }

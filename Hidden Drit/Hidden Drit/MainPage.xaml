@@ -11,13 +11,14 @@
         <ToolbarItem Text="Search" x:Name="btnSearch" Clicked="btnSearch_Clicked"/>
     </ContentPage.ToolbarItems>
 
-    <ListView x:Name="TracksListView">
+    <ListView x:Name="TracksListView" ItemTapped="TracksListView_ItemTapped">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextCell Text="{Binding Name}" Detail="{Binding Description}"/>
+                
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-
+ 
 
 </ContentPage>

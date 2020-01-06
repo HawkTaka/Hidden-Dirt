@@ -46,5 +46,13 @@ namespace Hidden_Drit
         {
 
         }
+
+        private void TracksListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var myListView = (ListView)sender; 
+            var myItem = (Track)myListView.SelectedItem;
+
+            Navigation.PushAsync(new ViewTrackPage(myItem));
+        }
     }
 }
