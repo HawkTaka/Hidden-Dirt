@@ -1,8 +1,10 @@
-﻿using Hidden_Drit.Models;
+﻿using Firebase.Storage;
+using Hidden_Drit.Models;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +19,8 @@ namespace Hidden_Drit.Pages
     {
         private MediaFile _mediaFile;
         private string URL { get; set; }
+
+        FirebaseStorageHelper firebaseStorageHelper = new FirebaseStorageHelper();
 
         public AddTrackPage()
         {
@@ -61,7 +65,7 @@ namespace Hidden_Drit.Pages
             }
         }
 
-        private void btnSave_Clicked(object sender, EventArgs e)
+        private async void btnSave_ClickedAsync(object sender, EventArgs e)
         {
             var newTrack = new Track();
 
@@ -72,8 +76,7 @@ namespace Hidden_Drit.Pages
             newTrack.TrackLevelId = LevelPicker.SelectedIndex;
             newTrack.TrackTypesId = TrackTypePicker.SelectedIndex;
             newTrack.ImagePath = _mediaFile.Path;
-            newTrack.ImageURL = UploadImage();
-
+            newTrack.ImageURL = await firebaseStorageHelper.UploadFile(_mediaFile.GetStream(), Path.GetFileName(_mediaFile.Path));
 
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DbPath))
             {
@@ -96,7 +99,8 @@ namespace Hidden_Drit.Pages
 
         private string UploadImage()
         {
-            return "";
+            throw new NotImplementedException();
         }
+
     }
 }
