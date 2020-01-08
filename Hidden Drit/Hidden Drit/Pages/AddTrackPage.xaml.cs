@@ -18,9 +18,11 @@ namespace Hidden_Drit.Pages
     public partial class AddTrackPage : ContentPage
     {
         private MediaFile _mediaFile;
+        
         private string URL { get; set; }
 
         FirebaseStorageHelper firebaseStorageHelper = new FirebaseStorageHelper();
+        ImageSizeHelper imgSizeHelper = new ImageSizeHelper();
 
         public AddTrackPage()
         {
@@ -59,12 +61,39 @@ namespace Hidden_Drit.Pages
                 {
                     PhotoSize = PhotoSize.Medium
                 };
-                _mediaFile = await CrossMedia.Current.PickPhotoAsync();
+                _mediaFile = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions() { PhotoSize = PhotoSize.MaxWidthHeight, MaxWidthHeight = 600 });
                 if (_mediaFile == null) return;
-                imgCoverImage.Source = ImageSource.FromStream(() => _mediaFile.GetStream());   
+                imgCoverImage.Source = ImageSource.FromStream(() => _mediaFile.GetStream());
+                
             }
         }
 
+        private async void btnTakePhoto_Clicked(object sender, EventArgs e)
+        {
+            await CrossMedia.Current.Initialize();
+
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await DisplayAlert("No Camera", ":( No camera avaialble.", "OK");
+                return;
+            }
+            else
+            {
+                _mediaFile = await CrossMedia.Current.TakePhotoAsync(new  Plugin.Media.Abstractions.StoreCameraMediaOptions
+                {
+
+                    Directory = "Images",
+                    Name = $"{DateTime.UtcNow}.jpg"
+                });
+
+                if (_mediaFile == null) 
+                    return;
+
+                imgCoverImage.Source = ImageSource.FromStream(() => _mediaFile.GetStream());
+            }
+        }
+
+        
         private async void btnSave_ClickedAsync(object sender, EventArgs e)
         {
             var newTrack = new Track();
@@ -76,7 +105,8 @@ namespace Hidden_Drit.Pages
             newTrack.TrackLevelId = LevelPicker.SelectedIndex;
             newTrack.TrackTypesId = TrackTypePicker.SelectedIndex;
             newTrack.ImagePath = _mediaFile.Path;
-           // newTrack.ImageURL = await firebaseStorageHelper.UploadFile(_mediaFile.GetStream(), Path.GetFileName(_mediaFile.Path));
+            Stream imgStream = imgSizeHelper.ResizeImage(_mediaFile, 640, 480);
+            newTrack.ImageURL = await firebaseStorageHelper.UploadFile(imgStream, "test.jpg");
 
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DbPath))
             {
@@ -85,12 +115,12 @@ namespace Hidden_Drit.Pages
 
                 if (numberOfRows > 0)
                 {
-                    DisplayAlert("Saved", "Track Details have been saved", "Ok");
-                    Navigation.PushAsync(new MainPage());
+                    await DisplayAlert("Saved", "Track Details have been saved", "Ok");
+                    await Navigation.PushAsync(new MainPage());
                 }
                 else
                 {
-                    DisplayAlert("Saved", "Trac Details have failed to saved", "Ok");
+                    await DisplayAlert("Saved", "Trac Details have failed to saved", "Ok");
                 }
 
             }
