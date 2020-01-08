@@ -26,17 +26,20 @@ namespace Hidden_Drit
             var originalHeight = originalImage.Height;
             var originalWidth = originalImage.Width;
 
-            if (originalHeight > originalWidth)
+            newHeight = originalHeight;
+            newWidth = originalWidth;
+
+            if (originalHeight > height)
             {
                 newHeight = height;
                 float ratio = originalHeight / height;
                 newWidth = originalWidth / ratio;
             }
-            else
+            if (newWidth > width)
             {
                 newWidth = width;
-                float ratio = originalWidth / width;
-                newHeight = originalHeight / ratio;
+                float ratio = newWidth / width;
+                newHeight = newHeight / ratio;
             }
 
             Bitmap resizedImage = Bitmap.CreateScaledBitmap(originalImage, (int)newWidth, (int)newHeight, true);
@@ -58,7 +61,6 @@ namespace Hidden_Drit
             using (var memoryStream = new MemoryStream())
             {
                 _mediaFile.GetStream().CopyTo(memoryStream);
-                _mediaFile.Dispose();
                 return memoryStream.ToArray();
             }
         }
