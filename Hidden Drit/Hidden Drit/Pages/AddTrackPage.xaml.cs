@@ -76,7 +76,7 @@ namespace Hidden_Drit.Pages
             newTrack.TrackLevelId = LevelPicker.SelectedIndex;
             newTrack.TrackTypesId = TrackTypePicker.SelectedIndex;
             newTrack.ImagePath = _mediaFile.Path;
-            newTrack.ImageURL = await firebaseStorageHelper.UploadFile(_mediaFile.GetStream(), Path.GetFileName(_mediaFile.Path));
+           // newTrack.ImageURL = await firebaseStorageHelper.UploadFile(_mediaFile.GetStream(), Path.GetFileName(_mediaFile.Path));
 
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DbPath))
             {
