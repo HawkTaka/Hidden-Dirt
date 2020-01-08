@@ -9,24 +9,31 @@ namespace Hidden_Drit
 {
     public class FirebaseStorageHelper
     {
-        FirebaseStorage firebaseStorage = new FirebaseStorage("gs://hidden-dirt.appspot.com/");
+        FirebaseStorage firebaseStorage = new FirebaseStorage("gs://hidden-dirt.appspot.com");
 
         public FirebaseStorageHelper(string overWriteURL = "")
         {
             if (overWriteURL != "")
             {
-                firebaseStorage = new FirebaseStorage(overWriteURL);
+                firebaseStorage = new FirebaseStorage(overWriteURL);                
             }
-
         }
 
 
         public async Task<string> UploadFile(Stream fileStream, string fileName)
         {
-            var imageUrl = await firebaseStorage
-                .Child("XamarinMonkeys")
-                .Child(fileName)
-                .PutAsync(fileStream);
+            try
+            {
+                var imageUrl = await firebaseStorage
+                                    .Child("XamarinMonkeys")
+                                    .Child(fileName)
+                                    .PutAsync(fileStream);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
             return imageUrl;
         }
     }
