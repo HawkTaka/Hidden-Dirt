@@ -9,16 +9,15 @@ namespace Hidden_Drit
 {
     public class FirebaseStorageHelper
     {
-        FirebaseStorage firebaseStorage= new FirebaseStorage("gs://hidden-dirt.appspot.com/");
+        FirebaseStorage firebaseStorage = new FirebaseStorage("gs://hidden-dirt.appspot.com");
 
         public FirebaseStorageHelper(string overWriteURL = "")
         {
             //firebaseStorage = FirebaseStorage.def
             if (overWriteURL != "")
             {
-                firebaseStorage = new FirebaseStorage(overWriteURL);
+                firebaseStorage = new FirebaseStorage(overWriteURL);                
             }
-
         }
 
 
