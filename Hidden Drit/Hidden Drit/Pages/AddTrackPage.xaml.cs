@@ -22,7 +22,7 @@ namespace Hidden_Drit.Pages
         private string URL { get; set; }
 
         FirebaseStorageHelper firebaseStorageHelper = new FirebaseStorageHelper();
-        ImageSizeHelper imgSizeHelper = new ImageSizeHelper();
+        //ImageSizeHelper imgSizeHelper = new ImageSizeHelper();
 
         public AddTrackPage()
         {
@@ -81,7 +81,8 @@ namespace Hidden_Drit.Pages
             {
                 _mediaFile = await CrossMedia.Current.TakePhotoAsync(new  Plugin.Media.Abstractions.StoreCameraMediaOptions
                 {
-                    
+                    PhotoSize = PhotoSize.MaxWidthHeight,
+                    MaxWidthHeight = 600,
                     Directory = "Images",
                     Name = $"{DateTime.UtcNow}.jpg"
                 });
@@ -105,7 +106,7 @@ namespace Hidden_Drit.Pages
             newTrack.TrackLevelId = LevelPicker.SelectedIndex;
             newTrack.TrackTypesId = TrackTypePicker.SelectedIndex;
             newTrack.ImagePath = _mediaFile.Path;
-           // Stream imgStream = imgSizeHelper.ResizeImage(_mediaFile, 640, 480);
+            //Stream imgStream = imgSizeHelper.ResizeImage(_mediaFile, 640, 480);
             newTrack.ImageURL = await firebaseStorageHelper.UploadFile(_mediaFile.GetStream(), Path.GetFileName(_mediaFile.Path));
 
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DbPath))
