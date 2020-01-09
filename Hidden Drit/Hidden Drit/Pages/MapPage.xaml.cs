@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +15,12 @@ namespace Hidden_Drit.Pages
         public MapPage()
         {
             InitializeComponent();
+            SetupMap();
+        }
+
+        private void SetupMap()
+        {
+            
         }
     }
 }

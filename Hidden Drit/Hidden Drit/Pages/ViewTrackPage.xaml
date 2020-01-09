@@ -37,7 +37,7 @@
                 <Label/>
                 <Image x:Name="imgCoverImage" BackgroundColor="Blue"/>
                 <Label/>
-                <Button x:Name="btnViewMap" Text="View Map"/>
+                <Button x:Name="btnViewMap" Text="View Map" Clicked="btnViewMap_Clicked"/>
                 <Label/>
 
                 

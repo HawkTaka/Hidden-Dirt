@@ -32,7 +32,7 @@ namespace Hidden_Drit.Pages
             lblDescription.Text = currentTrack.Description;
             if (File.Exists(currentTrack.ImagePath))
             {
-                var bytes = File.ReadAllBytes(currentTrack.ImagePath);
+                //imgCoverImage.Source = new ImageSource()
             }
 
 
@@ -59,6 +59,11 @@ namespace Hidden_Drit.Pages
 
 
 
+        }
+
+        private void btnViewMap_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new MapPage());
         }
     }
 }
