@@ -35,10 +35,10 @@
                 </Grid>
 
                 <Label/>
-                <Image x:Name="imgCoverImage" BackgroundColor="Blue"/>
-                <Label/>
+                <Image x:Name="imgCoverImage" BackgroundColor="Blue" HeightRequest="240"/>
+                <!--<Label/>-->
                 <Button x:Name="btnViewMap" Text="View Map" Clicked="btnViewMap_Clicked"/>
-                <Label/>
+                <!--<Label/>-->
 
                 
 

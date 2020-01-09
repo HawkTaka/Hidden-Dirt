@@ -30,12 +30,11 @@ namespace Hidden_Drit.Pages
         {
             lblName.Text = currentTrack.Name;
             lblDescription.Text = currentTrack.Description;
-            if (File.Exists(currentTrack.ImagePath))
-            {
-                //imgCoverImage.Source = new ImageSource()
-            }
 
-
+            //imgCoverImage.WidthRequest = currentTrack.Picture.Width;
+            //imgCoverImage.HeightRequest = currentTrack.Picture.Height;
+            imgCoverImage.Source = currentTrack.PictureSource;
+            
 
 
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DbPath))
