@@ -36,37 +36,6 @@ namespace Hidden_Drit.Models
                 return retval;
             }
         }
-        //public Android.Graphics.Bitmap Picture
-        //{
-        //    get 
-        //    {
-        //        string path = ImagePath;
-        //        if (String.IsNullOrEmpty(path))
-        //            path = ImageURL;
-        //        if (String.IsNullOrEmpty(path))
-        //            return null;
-        //        else
-        //            return GetImageBitmapFromUrl(path);
-        //    }
-        //}
-
-        //private Android.Graphics.Bitmap GetImageBitmapFromUrl(string url)
-        //{
-        //    Android.Graphics.Bitmap imageBitmap = null;
-
-        //    using (var webClient = new System.Net.WebClient())
-        //    {
-        //        var imageBytes = webClient.DownloadData(url);
-        //        if (imageBytes != null && imageBytes.Length > 0)
-        //        {
-        //            imageBitmap = Android.Graphics.BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
-        //        }
-
-
-        //    }
-
-        //    return imageBitmap;
-        //}
     }
 }
 
