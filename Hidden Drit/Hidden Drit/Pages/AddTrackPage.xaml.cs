@@ -100,22 +100,22 @@ namespace Hidden_Drit.Pages
         
         private async void btnSave_ClickedAsync(object sender, EventArgs e)
         {
-            var newTrack = new Track();
+            _currentTrack = new Track();
 
-            newTrack.CreatedDate = DateTime.Now;
-            newTrack.CreatedID = 1;
-            newTrack.Description = txtDescription.Text;
-            newTrack.Name = txtTrackName.Text;
-            newTrack.TrackLevelId = LevelPicker.SelectedIndex;
-            newTrack.TrackTypesId = TrackTypePicker.SelectedIndex;
-            newTrack.ImagePath = _mediaFile.Path;
+            _currentTrack.CreatedDate = DateTime.Now;
+            _currentTrack.CreatedID = 1;
+            _currentTrack.Description = txtDescription.Text;
+            _currentTrack.Name = txtTrackName.Text;
+            _currentTrack.TrackLevelId = LevelPicker.SelectedIndex;
+            _currentTrack.TrackTypesId = TrackTypePicker.SelectedIndex;
+            _currentTrack.ImagePath = _mediaFile.Path;
             //Stream imgStream = imgSizeHelper.ResizeImage(_mediaFile, 640, 480);
-            newTrack.ImageURL = await firebaseStorageHelper.UploadFile(_mediaFile.GetStream(), Path.GetFileName(_mediaFile.Path));
+            _currentTrack.ImageURL = await firebaseStorageHelper.UploadFile(_mediaFile.GetStream(), Path.GetFileName(_mediaFile.Path));
 
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.DbPath))
             {
                 conn.CreateTable<Track>();
-                int numberOfRows = conn.Insert(newTrack);
+                int numberOfRows = conn.Insert(_currentTrack);
 
                 if (numberOfRows > 0)
                 {
