@@ -1,5 +1,7 @@
 ﻿using Firebase.Storage;
 using Hidden_Drit.Models;
+using Plugin.FilePicker;
+using Plugin.FilePicker.Abstractions;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -18,7 +20,7 @@ namespace Hidden_Drit.Pages
     public partial class AddTrackPage : ContentPage
     {
         private MediaFile _mediaFile;
-        
+        private Track _currentTrack;
         private string URL { get; set; }
 
         FirebaseStorageHelper firebaseStorageHelper = new FirebaseStorageHelper();
@@ -29,6 +31,7 @@ namespace Hidden_Drit.Pages
             InitializeComponent();
 
             populatePickers();
+            _currentTrack = new Track();
         }
 
         private void populatePickers()
@@ -131,6 +134,30 @@ namespace Hidden_Drit.Pages
         private string UploadImage()
         {
             throw new NotImplementedException();
+        }
+
+        private async void btnUploadGeoData_ClickedAsync(object sender, EventArgs e)
+        {
+            try
+            {
+                var filedata = await CrossFilePicker.Current.PickFile();
+                if (filedata != null && File.Exists(filedata.FilePath))
+                {
+                    if (Path.GetExtension(filedata.FilePath).ToLower() != "kml")
+                    {
+                        //Please select a KML file.
+                        return;
+                    }
+
+
+                    string FileContent = File.ReadAllText(filedata.FilePath);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
         }
 
     }

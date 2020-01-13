@@ -27,6 +27,7 @@ or go capture a route you enjoy to ride to get more like minded friends to join 
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="4.4.0.991265" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.34" />
   </ItemGroup>
 
   <ItemGroup>

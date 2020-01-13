@@ -8,6 +8,8 @@ namespace Hidden_Drit.Models
     {
         public int Id { get; set; }
         public int TrackID { get; set; }
+        public string XMLData { get; set; }
+        public string XMLDataType { get; set; }
 
     }
 }

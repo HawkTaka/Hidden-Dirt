@@ -34,7 +34,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Button x:Name="btnUploadGeoData" Text="Upload GeoData" Grid.Row="0" Grid.Column="0"/>
+                <Button x:Name="btnUploadGeoData" Text="Upload GeoData" Grid.Row="0" Grid.Column="0" Clicked="btnUploadGeoData_ClickedAsync"/>
                 <Button x:Name="btnGeoLocation" Text="GPS Location" Grid.Row="0" Grid.Column="1"/>
             </Grid>
 
